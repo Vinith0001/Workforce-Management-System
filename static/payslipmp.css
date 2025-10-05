@@ -1,0 +1,815 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+    *{
+        padding:0;
+        margin:0;
+        box-sizing: border-box;
+        font-family: 'Poppins','sans-serif';
+    }
+    h1 {
+    margin-bottom: 0px; 
+    }
+    header{
+        margin-top: 150px;
+    }
+    a{
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+    }
+    p {
+    margin-top: 0;
+    }
+
+    .navbar{
+        display:flex;
+    justify-content: space-between;
+    background-color:rgba(255, 255, 255, 0.8);
+    color: black;
+    margin: 0px;
+    width:100%;
+    z-index: 10;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    position: fixed;
+}
+    
+    .nav-elements{
+        display:flex;
+        padding: 20px;
+    }
+    .nav-elements nav{
+        justify-content: space-around;
+        margin-left:60px;
+    }
+    .name{
+        display:flex;
+        margin:10px;
+    }
+    .name nav{
+        margin-left: 10px;
+    }
+    nav input{
+        border: none;
+        background-color: transparent;
+    }
+    .in{
+    border-style: solid;
+        border-radius: 40px;
+        height: 40px;
+        width: 225px;
+        
+    }nav i{
+        margin-top:10px;
+        margin-left:20px;
+    }
+    .a i{
+        font-size: 20px;
+    }
+
+    input:focus{
+    outline: none;
+    }
+    nav i:hover{
+        cursor: pointer;
+    }
+    #b{
+        padding: 5px;
+    }
+    #side-bar{
+        width:270px;
+        display:flex;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        flex-direction: column;
+        margin:5px;
+        margin-top: 120px;
+        padding:10px;
+        height:650px;
+        justify-content: space-around;
+        position:fixed
+    }
+    .summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  width: 100%;
+  margin: 10px 0;
+}
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  padding: 20px;
+  text-align: center;
+}
+
+#side-bar ul i{
+        margin-left:5px;
+        margin-right:20px;
+    }
+    #side-bar ul{
+        padding: 10px;
+    }
+    #side-bar p{
+        display:inline-block;
+    }
+    #side-bar ul:hover{
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.2); 
+    }
+
+.mess h1{
+    display:inline-block;
+}
+
+
+    
+.left{
+    margin-left:270px;
+    padding-left:20px;
+    padding-top: 20px;
+    width:1250px;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+header p {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.card-header h5 {
+    margin: 0;
+}
+
+.btn i {
+    margin-right: 4px;
+}
+.profile-popup {
+                    display: none;
+                    position: fixed;
+                    top: 70px;
+                    right: 20px;
+                    width: 350px;
+                    max-width: 95vh;
+                    background: white;
+                    border-radius: 12px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+                    z-index: 1000;
+                    overflow-y: auto;
+                    animation: fadeIn 0.3s ease;
+                }
+                
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(-10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                
+                .profile-header {
+                    background: linear-gradient(135deg, #3498db, #2c3e50);
+                    color: white;
+                    padding: 20px;
+                    text-align: center;
+                }
+                
+                .profile-pic {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    border: 4px solid white;
+                    object-fit: cover;
+                    margin-bottom: 10px;
+                }
+                
+                .profile-body {
+                    padding: 20px;
+                }
+                
+                .profile-info {
+                    margin-bottom: 15px;
+                }
+                
+                .profile-info h4 {
+                    color: #3498db;
+                    margin-bottom: 5px;
+                    font-size: 16px;
+                }
+                
+                .profile-info p {
+                    color: #555;
+                    font-size: 14px;
+                }
+                
+                .profile-footer {
+                    border-top: 1px solid #eee;
+                    padding: 15px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    justify-content: space-between;
+                }
+                
+                .profile-btn {
+                    padding: 8px 15px;
+                    border-radius: 20px;
+                    font-size: 13px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+                
+                .view-profile {
+                    background: #3498db;
+                    color: white;
+                    border: none;
+                }
+                
+                .logout {
+                    background: none;
+                    border: 1px solid #e74c3c;
+                    color: #e74c3c;
+                }
+                
+                .profile-btn:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                }
+                
+                .close-popup {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    color: white;
+                    cursor: pointer;
+                    background: rgba(0,0,0,0.2);
+                    border-radius: 50%;
+                    width: 25px;
+                    height: 25px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+#option{
+        padding: 10px;
+        margin:10px;
+        display: none;
+    }
+    @media screen and ( max-width:768px) {
+    .navbar{
+        font-size: 15px;
+        width: 100%;
+        height: 90px;
+        display: flex;
+        gap: 0;
+        margin: 0px;    
+    }
+    .in{
+        display: none;
+    }
+    #option{
+        display: block;
+        padding: 15px;
+        margin-top: 15px;
+    }
+    #side-bar{
+        font-size:14px;
+        width: 250px;
+        height: 550px;
+        padding: 0px;
+    }    
+}
+@media screen and (max-width: 600px) {
+    
+    #c{
+        margin-right: 10px;
+    }
+  .left {
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .mess {
+    width: 100%;
+    margin: 80px auto 20px auto;
+    border-radius: 18px;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .float,
+  .widgets {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .total-employee,
+  .new-employee,
+  .holiday,
+  .w-hours,
+  .Entries,
+  .leavesum {
+    width: 100%;
+    padding: 20px;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin: 10px 0;
+  }
+
+  .Tentries {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .Tentries h3,
+  .Tentries p {
+    font-size: 13px;
+  }
+
+  .abs {
+    display: block;
+    margin: 20px auto 0 auto;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    background: #eaeaea;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  #option {
+    display: block;
+  }
+  .profile-popup {
+    width: 95%;
+    right: 2.5%;
+  }
+
+  .in {
+    width: 100%;
+  }
+
+  progress {
+    width: 100%;
+  }
+  .leavesum{
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    padding: 10px;
+    height:450px;
+  }
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+  .profile-popup {
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+  }
+}
+@media screen and (max-width:450px)  {
+    .navbar{
+        font-size: 10px;
+        width: 100%;
+        height: 90px;
+        display: flex;
+        gap: 0;
+        margin: 0px;
+    }
+    .in{
+        display: none;
+    }
+    .nav-elements nav{
+        margin: 0px;
+        padding: 0px;
+    }
+    .a{
+        margin: 0px;
+        padding: 0px;
+    }
+    .navbar img{
+        width: 50px;
+        height: 50px;
+    }
+    #option{
+        display: block;
+        padding: 15px;
+        margin-top: 15px;
+    }
+    #side-bar{
+        margin:0px;
+        margin-top:90px;
+        background-color:rgba(255, 255, 255, 1) ;
+        font-size:11px;
+        width: 180px;
+        height: 550px;
+        padding: 10px;
+        display: none;
+        z-index: 10;
+    }
+    #side-bar i{
+        margin-right: 0;
+        padding-right: 0px;
+    }
+    #side-bar ul{
+        padding: 0px;
+        width: 160px;
+    }
+    .profile-popup {
+    right: 2.5%;
+    top: 60px;
+    padding: 10px;
+  }
+
+  .profile-header {
+    padding: 15px;
+  }
+
+  .profile-body {
+    padding: 15px;
+  }
+
+  .profile-footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .profile-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+@media screen and (max-width:320px) {
+    .navbar{
+        font-size: 10px;
+    }
+    .navbar i{
+        font-size: 15px;
+    }
+}
+/* Body Background & Text */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Card Styling */
+body.dark-mode .card {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+    border: 1px solid #2c2c2c;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+/* Card Header */
+body.dark-mode .card-header {
+    background-color: #2a2a2a !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #444;
+    padding: 15px 20px;
+}
+
+/* Form Controls */
+body.dark-mode .form-control,
+body.dark-mode textarea {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 10px 12px;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .form-control:focus,
+body.dark-mode textarea:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #aaaaaa;
+}
+
+/* Label Styling */
+body.dark-mode label {
+    color: #dddddd;
+    font-weight: 500;
+}
+
+/* Button */
+body.dark-mode .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+
+body.dark-mode .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* Table */
+body.dark-mode .table {
+    color: #ffffff;
+}
+
+body.dark-mode .table th,
+body.dark-mode .table td {
+    border-color: #444;
+}
+
+/* Alerts */
+body.dark-mode .alert-info {
+    background-color: #1e1e1e;
+    color: #ddd;
+    border-color: #444;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Adjust Section Titles */
+body.dark-mode h2,
+body.dark-mode h5,
+body.dark-mode p.text-muted {
+    color: #ffffff;
+}
+
+/* Optional: Smooth shadows */
+body.dark-mode .card,
+body.dark-mode .btn,
+body.dark-mode .form-control {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+/* Improved Dark Mode Layout for Form Section */
+body.dark-mode .card {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+    border: 1px solid #2c2c2c;
+    border-radius: 16px;
+    padding: 30px 25px;
+    margin-bottom: 30px;
+}
+
+/* Card Header */
+body.dark-mode .card-header {
+    background-color: #2a2a2a !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #444;
+    padding: 20px 25px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 12px 12px 0 0;
+}
+
+/* Labels */
+body.dark-mode label {
+    color: #dddddd;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Form Control Fields */
+body.dark-mode .form-control,
+body.dark-mode textarea,
+body.dark-mode input[type="date"] {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 10px 12px;
+    width: 100%;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+body.dark-mode .form-control:focus,
+body.dark-mode textarea:focus,
+body.dark-mode input[type="date"]:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+
+body.dark-mode .form-control::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #aaaaaa;
+}
+
+/* Submit Button */
+body.dark-mode .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 12px 24px;
+    transition: 0.3s ease;
+}
+
+body.dark-mode .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.5);
+}
+
+/* Responsive Grid for Form Fields */
+body.dark-mode .row .col-md-4,
+body.dark-mode .row .col-md-6,
+body.dark-mode .row .col-md-12 {
+    padding: 10px;
+}
+
+/* Table */
+body.dark-mode .table {
+    color: #ffffff;
+}
+
+body.dark-mode .table th,
+body.dark-mode .table td {
+    border-color: #444;
+}
+
+/* Alerts */
+body.dark-mode .alert-info {
+    background-color: #1e1e1e;
+    color: #ddd;
+    border-color: #444;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Section Titles */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h5,
+body.dark-mode p.text-muted {
+    color: #ffffff;
+}
+
+/* Smooth Shadow Effect */
+body.dark-mode .card,
+body.dark-mode .btn,
+body.dark-mode .form-control {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Fix Gaps */
+body.dark-mode .form-group,
+body.dark-mode .form-row {
+    margin-bottom: 20px;
+}
+/* Dark Mode for Navbar */
+body.dark-mode .navbar {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    box-shadow: rgba(255, 255, 255, 0.08) 0px 4px 12px;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-mode .navbar a,
+body.dark-mode .navbar i,
+body.dark-mode .nav-elements nav input {
+    color: #ffffff;
+}
+
+body.dark-mode .nav-elements nav input {
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    border-radius: 20px;
+    padding: 5px 10px;
+    color: #ffffff;
+}
+
+body.dark-mode .nav-elements nav input::placeholder {
+    color: #aaa;
+}
+
+body.dark-mode .nav-elements nav i:hover {
+    color: #0d6efd;
+}
+
+/* Dark Mode for Sidebar */
+body.dark-mode #side-bar {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    box-shadow: rgba(255, 255, 255, 0.06) 0px 8px 24px;
+    border-right: 1px solid #333;
+}
+
+body.dark-mode #side-bar ul {
+    background-color: transparent;
+    color: #ffffff;
+    padding: 10px;
+    margin: 0;
+    transition: background-color 0.3s;
+}
+
+body.dark-mode #side-bar ul:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+}
+
+body.dark-mode #side-bar i {
+    color: #ffffff;
+}
+
+body.dark-mode #side-bar p {
+    color: #dddddd;
+}
+
+/* Profile Popup in Dark Mode */
+body.dark-mode .profile-popup {
+    background-color: #1f1f1f;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .profile-header {
+    background: linear-gradient(135deg, #0d6efd, #1e1e1e);
+    color: #ffffff;
+}
+
+body.dark-mode .profile-info p {
+    color: #bbbbbb;
+}
+
+body.dark-mode .logout {
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+}
+
+body.dark-mode .logout:hover {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+body.dark-mode .view-profile {
+    background: #0d6efd;
+    color: white;
+}
+
+body.dark-mode .close-popup {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+/* Cards (Form sections and tables) */
+.card {
+  margin: 12px 0 !important;         /* space between boxes */
+  padding: 18px !important;          /* space inside box */
+  border-radius: 14px;
+  border: 1px solid #ddd;            /* light border */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  background-color: #ffffff;
+}
+
+/* In dark mode */
+body.dark-mode .card {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 3px 6px rgba(255, 255, 255, 0.05);
+}
+
+/* Card headers */
+.card-header {
+  padding: 12px 16px !important;
+  border-bottom: 1px solid #ccc;
+  background-color: #f0f0f0;
+}
+
+body.dark-mode .card-header {
+  background-color: #2b2b2b !important;
+  border-bottom: 1px solid #444;
+}
+
+/* Inputs and form spacing */
+.form-control, textarea {
+  padding: 10px 14px;
+  margin-bottom: 10px; /* space between fields */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+body.dark-mode .form-control,
+body.dark-mode textarea {
+  background-color: #2c2c2c;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+body.dark-mode .form-control::placeholder {
+  color: #999;
+}
+
