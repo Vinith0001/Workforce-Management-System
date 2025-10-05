@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Employee Payslip Portal</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='payslipmp.css')}}" />
+</head>
+<body class="bg-light">
+
+    <!-- Header -->
+     <div class="navbar">
+        <div id="option">
+            <i class="fa-solid fa-bars" onclick=menu()></i>
+        </div>
+        <div class="name">
+            <img src="{{ url_for('static', filename='epical.png')}}" heigh="30" width="50px">
+            <nav>
+                <h1>Epical Layout</h1>
+                <p>Employee Portal</p>
+            </nav>
+        </div>
+        <div class="nav-elements">
+            <nav class="a" id="b">
+                <i class="bi bi-moon-fill" onclick=dark()></i>
+            </nav>
+            <nav class="a" id="c">
+                <i class="fas fa-user-circle" id="user-icon"></i> 
+            </nav>
+        </div>
+    </div>
+     </div>
+    <div id="side-bar">
+        <a href="{{ url_for('empdashboard') }}"><ul>
+            <i class="fa-solid fa-house"></i><p>Dashboard</p>
+        </ul></a>
+        <a href="{{ url_for('time_emp') }}"><ul>
+            <i class="fa-regular fa-clock"></i><p>Timesheet</p>
+        </ul></a>
+        <a href="{{ url_for('leave') }}"><ul>
+        <i class="fa-regular fa-calendar"></i><p>Leave Management</p>
+        </ul></a>
+        <a href=""><ul>
+        <i class="fa-regular fa-file"></i><p>Documents</p>
+        </ul></a>
+        <a href="{{ url_for('profile') }}"><ul>
+            <i class="fa-regular fa-user"></i><p>Profile</p>
+        </ul></a>
+        <p>Quick-Actions</p>
+        
+        <a href="{{ url_for('employee_portal') }}"><ul>
+            <i class="fa-solid fa-download"></i><p>Download Payslip</p>
+        </ul></a>
+        
+    </div>
+    <div class="left">
+        <header class="bg-dark text-white py-4 mb-4">
+        <div class="container">
+            <h1 class="mb-0"><i class="bi bi-briefcase-fill"></i> Employee Payslip Portal</h1>
+            <p class="text-muted mb-0">Secure access to your monthly payslips</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Section Title -->
+        <div class="row mb-4">
+            <div class="col">
+                <h2><i class="bi bi-file-earmark-text"></i> Employee Payslip Portal</h2>
+                <p class="text-muted">View your payslips or request missing ones</p>
+            </div>
+        </div>
+
+        <!-- Payslip Request Form -->
+        <div class="card mb-5">
+            <div class="card-header bg-primary text-white">
+                <h5><i class="bi bi-file-earmark-plus"></i> Request Missing Payslip</h5>
+            </div>
+            <div class="card-body">
+                <form action="/request_payslip" method="POST">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="employee_name" class="form-label">Your Full Name</label>
+                            <input type="text" class="form-control" id="employee_name" name="employee_name" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="employee_id" class="form-label">Employee ID</label>
+                            <input type="text" class="form-control" id="employee_id" name="employee_id" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="month_year" class="form-label">Month & Year Needed</label>
+                            <input type="month" class="form-control" id="month_year" name="month_year" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="additional_notes" class="form-label">Additional Notes</label>
+                            <textarea class="form-control" id="additional_notes" name="additional_notes" rows="2"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-send"></i> Submit Request
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Available Payslips Table -->
+<!-- Available Payslips Table -->
+<div class="card">
+    <div class="card-header bg-success text-white">
+        <h5><i class="bi bi-file-earmark-text"></i> Your Payslips</h5>
+    </div>
+    <div class="card-body">
+        {% if active_files %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Month-Year</th>
+                        <th>Request Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in active_files %}
+                    <tr>
+                        <td>{{ file['Month-Year'] }}</td>
+                        <td>{{ file['Request Date'] }}</td>
+                        <td>
+                            <span class="badge 
+                                {% if file['Status'] == 'Fulfilled' %}bg-success
+                                {% elif file['Status'] == 'Pending' %}bg-warning text-dark
+                                {% else %}bg-secondary{% endif %}">
+                                {{ file['Status'] }}
+                            </span>
+                        </td>
+                        <td>
+                            {% if file['Download Link'] %}
+                            <a href="{{ file['Download Link'] }}" class="btn btn-sm btn-outline-primary" download>
+                                <i class="bi bi-download"></i> Download
+                            </a>
+                            {% else %}
+                            <span class="text-muted">Not available yet</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i> No payslip records found.
+        </div>
+        {% endif %}
+    </div>
+</div>
+        
+    <div class="profile-popup" id="profilePopup">
+        <div class="close-popup" id="closePopup">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="profile-header">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="profile-pic" alt="Profile">
+            <h3>John Doe</h3>
+            <p>Software Engineer</p>
+        </div>
+        <div class="profile-body">
+            <div class="profile-info">
+                <h4>Email</h4>
+                <p>john.doe@company.com</p>
+            </div>
+            <div class="profile-info">
+                <h4>Employee ID</h4>
+                <p>EMP-2048</p>
+            </div>
+            <div class="profile-info">
+                <h4>Department</h4>
+                <p>Engineering - IT</p>
+            </div>
+            <div class="profile-info">
+                <h4>Join Date</h4>
+                <p>March 15, 2020</p>
+            </div>
+        </div>
+        <div class="profile-footer">
+            <a href="../profile/profile.html"><button class="profile-btn view-profile">View Full Profile</button></a>
+            <a href="../login/index.html"><button class="profile-btn logout">Log Out</button></a>
+        </div>
+    </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='scipt/darkemp.js')}}""></script>
+</body>
+</html>

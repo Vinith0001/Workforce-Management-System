@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payslip Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'Poppins','sans-serif';
+}
+h1 {
+  margin-bottom: 0px; 
+}
+.container-fluid{
+    margin-top: 100px;
+} 
+p {
+  margin-top: 0;
+}
+.info-cards {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.info-card {
+    background: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    width: 300px;
+
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.icon {
+    font-size: 1.2rem;
+    color: #764ba2;
+    margin-bottom: 10px;
+}
+
+.label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.value {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.4;
+}
+
+.quote-card .value {
+    font-style: italic;
+    color: #444;
+}
+
+.date-card .value {
+    color: #3f51b5;
+}
+a{
+        color: inherit;
+        text-decoration: none;
+        display: inline-block;
+        }
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  width: 100%;
+  margin: 10px 0;
+}
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  padding: 20px;
+  text-align: center;
+}
+
+.navbar{
+    display:flex;
+    justify-content: space-between;
+    background-color:rgba(255, 255, 255, 0.8);
+    color: black;
+    margin: 0px;
+    width:100%;
+    z-index: 10;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    position: fixed;
+}
+.nav-elements{
+    display:flex;
+    padding: 20px;
+}
+.nav-elements nav{
+    justify-content: space-around;
+    margin-left:60px;
+}
+.name{
+    display:flex;
+    margin:10px;
+}
+.name nav{
+    margin-left: 10px;
+}
+nav input{
+    border: none;
+    background-color: transparent;
+}
+.in{
+   border-style: solid;
+    border-radius: 40px;
+    height: 40px;
+    width: 225px;
+    
+}
+nav i{
+    margin-top:10px;
+    margin-left:20px;
+}
+.a i{
+    font-size: 20px;
+}
+
+input:focus{
+  outline: none;
+}
+nav i:hover{
+    cursor: pointer;
+}
+#b{
+            margin-top: 5px;
+        }
+#side-bar{
+    width:270px;
+    display:flex;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    flex-direction: column;
+    margin:5px;
+    margin-top: 110px;
+    padding:10px;
+    height:640px;
+    z-index: 100;
+    justify-content: space-around;
+    position:fixed
+}
+#side-bar ul i{
+    margin-left:5px;
+    margin-right:20px;
+}
+#side-bar ul{
+    padding: 10px;
+}
+#side-bar p{
+    display:inline-block;
+}
+#side-bar ul:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2); 
+}
+.mess h1{
+    display:inline-block;
+}
+.left{
+    margin-left:270px;
+    padding-left:20px;
+    padding-top: 20px;
+     width:1250px;
+}
+#option{
+        padding: 10px;
+        margin:10px;
+        display: none;
+    }
+        .status-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .status-fulfilled {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .table-container {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div id="option">
+            <i class="fa-solid fa-bars" onclick=menu()></i>
+        </div>
+        <div class="name">
+            <img src="{{ url_for('static', filename='epical.png') }}" heigh="30" width="50px">
+            <nav>
+                <h1>Epical Layout</h1>
+                <p>Admin Portal</p>
+            </nav>
+        </div>
+        <div class="nav-elements">
+            <nav class="a" id="b">
+                <i class="bi bi-moon-fill" onclick=dark()></i>
+            </nav>
+            <nav class="a" id="c">
+                <i class="fas fa-user-circle" id="user-icon"></i>   <!-- solid user circle -->
+            </nav>
+        </div>
+    </div>
+    <div id="side-bar">
+        <a href="{{ url_for('admindashboard') }}">
+        <ul>
+        <i class="fa-solid fa-house"></i><p>Dashboard</p>
+        </ul></a>
+      <a href="{{ url_for('timeadmin') }}"><ul>
+          <i class="fa-regular fa-clock"></i><p>Timesheet</p>
+      </ul></a>
+      <a href="{{ url_for('leave_ad') }}"><ul>
+        <i class="fa-solid fa-user-pen"></i><p>Leave Management</p>
+      </ul></a>
+      <a href="{{ url_for('publicholiday') }}"><ul>
+        <i class="fa-regular fa-calendar"></i><p>Holiday Planner</p>
+      </ul></a>
+      <a href="{{ url_for('showemployee') }}"><ul>
+        <i class="fa-regular fa-user"></i><p>Employee</p>
+      </ul></a>
+      <p>Quick-Actions</p>
+      <a href=""><ul>
+        <i class="fa-solid fa-flask"></i><p>Lab</p>
+      </ul></a>
+      <a href="{{ url_for('payslipad') }}"><ul>
+        <i class="fa-solid fa-upload"></i><p>Upload Payslip</p>
+      </ul></a>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="left">
+    <div class="container-fluid py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">Payslip Management</h1>
+            <span>Welcome, {{ fullname }}</span>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-clock me-2"></i>Pending Requests</h5>
+            </div>
+            <div class="card-body p-0">
+                {% if pending_requests %}
+                    <div class="table-container">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>ID</th>
+                                    <th>Month</th>
+                                    <th>Notes</th>
+                                    <th>Request Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for req in pending_requests %}
+                                    <tr>
+                                        <td>{{ req['Employee Name'] }}</td>
+                                        <td>{{ req['Employee ID'] }}</td>
+                                        <td>{{ req['Month-Year'] }}</td>
+                                        <td>{{ req['Additional Notes'] }}</td>
+                                        <td>{{ req['Request Date'] }}</td>
+                                        <td>
+                                            <form method="POST" action="{{ url_for('upload_payslip') }}" enctype="multipart/form-data">
+                                                <div class="input-group">
+                                                    <input type="file" class="form-control form-control-sm" name="file" accept=".pdf" required>
+                                                    <input type="hidden" name="row_id" value="{{ req.row_id }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary">
+                                                        <i class="fas fa-upload me-1"></i>Upload
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="p-4 text-center text-muted">
+                        No pending payslip requests
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-check-circle me-2"></i>Fulfilled Requests</h5>
+            </div>
+            <div class="card-body p-0">
+                {% if fulfilled_requests %}
+                    <div class="table-container">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>ID</th>
+                                    <th>Month</th>
+                                    <th>File</th>
+                                    <th>Upload Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for req in fulfilled_requests %}
+                                    <tr>
+                                        <td>{{ req['Employee Name'] }}</td>
+                                        <td>{{ req['Employee ID'] }}</td>
+                                        <td>{{ req['Month-Year'] }}</td>
+                                        <td>
+                                            {% if req['Download Link'] %}
+                                                <a href="{{ req['Download Link'] }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-file-pdf me-1"></i>{{ req['File Name'] }}
+                                                </a>
+                                            {% else %}
+                                                {{ req['File Name'] }}
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ req['Upload Date'] }}</td>
+                                        <td>
+                                            <span class="status-badge status-fulfilled">
+                                                <i class="fas fa-check-circle me-1"></i>Fulfilled
+                                            </span>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="p-4 text-center text-muted">
+                        No fulfilled payslip requests
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
